@@ -115,26 +115,28 @@
                     <h4 class="modal-title">Add New Product</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="productForm">
+                    <form id="editProductForm">
                         <input type="hidden" name="id" id="id" value="0">
                         <div class="row">
+                            <input class="form-control" placeholder="Id" name="id" id="editProductId" type="text" value="">
+
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label >Name</label>
-                                    <input class="form-control" placeholder="Name" name="name" id="name" type="text" value="">
+                                    <input class="form-control" placeholder="Name" name="name" id="editProductName" type="text" value="">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label >Unit</label>
-                                    <select name="uoms" id="uoms" class="form-control">
+                                    <select name="uoms" id="editProductUom" class="form-control">
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label >Price Per Unit</label>
-                                    <input class="form-control" placeholder="Price Per Unit" name="price" id="price" type="text" value="">
+                                    <input class="form-control" placeholder="Price Per Unit" name="price" id="editProductRate" type="text" value="">
                                 </div>
                             </div>
                         </div>
@@ -142,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveProduct">Save Changes</button>
+                    <button type="button" class="btn btn-primary" id="editProduct">Save Changes</button>
                 </div>
             </div>
         </div>

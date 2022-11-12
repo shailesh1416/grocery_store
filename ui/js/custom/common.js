@@ -2,6 +2,8 @@
 var productListApiUrl = 'http://127.0.0.1:5000/getProducts';
 var uomListApiUrl = 'http://127.0.0.1:5000/getUOM';
 var productSaveApiUrl = 'http://127.0.0.1:5000/insertProduct';
+var productEditApiUrl = 'http://127.0.0.1:5000/editProduct';
+
 // new endpoint
 var productGetApiUrl = 'http://127.0.0.1:5000/getProduct';
 var productDeleteApiUrl = 'http://127.0.0.1:5000/deleteProduct';
@@ -19,7 +21,7 @@ function callApi(method, url, data) {
 
     }).done(function( msg ) {
         window.location.reload();
-        alert(`New order placed Successfully`)
+       
     });
 }
 

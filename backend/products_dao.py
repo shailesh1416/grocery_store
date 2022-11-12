@@ -22,17 +22,29 @@ def get_all_products(connection):
 # Function to get single products
 def get_product(connection,product_id):
     cursor = connection.cursor()
-    query = ("SELECT product_id,name,rate FROM grocery_store.products where product_id="+str(product_id))
+    query = ("SELECT product_id,name,uom_id,rate FROM grocery_store.products where product_id="+str(product_id))
     cursor.execute(query)
     data = cursor.fetchone()
     response={
-            'name' : data[0],
-            'rate':data[1],
+            'id':data[0],
+            'name' : data[1],
             'uom_name':data[2],
+            'rate':data[3],
         }
     return response
 
 # Function to insert a products
+def edit_product(connection, product):
+    print(product)
+    cursor = connection.cursor()
+    query = ("UPDATE products SET name = %s, uom_id =%s,rate = %s where product_id=%s")
+    data = (product['product_name'],product['uom_id'],product['rate'],product['id'])
+
+    cursor.execute(query, data)
+    connection.commit()
+    return cursor.lastrowid
+
+# Function to edit a product
 def insert_new_product(connection, product):
     cursor = connection.cursor()
     query = ("insert into products"
@@ -43,8 +55,9 @@ def insert_new_product(connection, product):
     connection.commit()
     return cursor.lastrowid
 
-# Delete a product
 
+
+# Delete a product
 def delete_product(connection,product_id):
     cursor = connection.cursor()
     query = ("delete from products where product_id="+str(product_id))
@@ -66,5 +79,6 @@ if __name__=='__main__':
     # print(get_product(connection, 18))
 
 
-    connection.close()
+    # connection.close()
+
 

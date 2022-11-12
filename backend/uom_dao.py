@@ -1,7 +1,7 @@
 from sql_connection import get_sql_connection
 
-# get all uom
 
+# get all uom
 def get_uoms(connection):
     cursor = connection.cursor()
     query = ("SELECT * FROM uom")
