@@ -9,6 +9,8 @@ var productGetApiUrl = 'http://127.0.0.1:5000/getProduct';
 var productDeleteApiUrl = 'http://127.0.0.1:5000/deleteProduct';
 var orderListApiUrl = 'http://127.0.0.1:5000/getAllOrders';
 var orderSaveApiUrl = 'http://127.0.0.1:5000/insertOrder';
+var orderDetailApiUrl = 'http://127.0.0.1:5000/orderDetails';
+var orderCancleApiUrl = 'http://127.0.0.1:5000/orderCancle';
 
 // For product drop in order
 var productsApiUrl = 'https://fakestoreapi.com/products';

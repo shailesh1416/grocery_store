@@ -41,7 +41,7 @@ var productEditModal = $("#editModal");
                     requestPayload.uom_id = element.value;
                     break;
                 case 'price':
-                    requestPayload.price_per_unit = element.value;
+                    requestPayload.rate = element.value;
                     break;
             }
         }
@@ -81,7 +81,8 @@ var productEditModal = $("#editModal");
         callApi("POST", productEditApiUrl, {
             'data': JSON.stringify(requestPayload)
         });
-        alert(`Product edited Successfully`)
+        $('#editModal').modal('hide');
+        // alert(`Product edited Successfully`)
     });
 
     $(document).on("click", ".delete-product", function (){

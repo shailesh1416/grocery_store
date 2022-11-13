@@ -50,7 +50,7 @@ def insert_new_product(connection, product):
     query = ("insert into products"
              "(name,uom_id,rate)"
              "values(%s,%s,%s)")
-    data = (product['name'],product['uom_id'],product['rate'])
+    data = (product['product_name'],product['uom_id'],product['rate'])
     cursor.execute(query, data)
     connection.commit()
     return cursor.lastrowid

@@ -4,7 +4,7 @@ from datetime import datetime
 # Function to get all products
 def get_all_orders(connection):
     cursor = connection.cursor()
-    query = "select * from orders"
+    query = "select * from orders order by datetime desc"
     cursor.execute(query)
     response = []
     for (order_id,customer_name,total,datetime) in cursor:
@@ -14,6 +14,23 @@ def get_all_orders(connection):
                 'customer_name' : customer_name,
                 'total':total,
                 'datetime':datetime,
+            }
+        )
+    return response
+
+#get order details
+def get_order_details(connection,order_id):
+    cursor = connection.cursor()
+    query = ("SELECT o.order_id,o.quantity,o.total_price, p.name FROM grocery_store.order_details as o inner join grocery_store.products as p on o.product_id = p.product_id where order_id="+str(order_id))
+    cursor.execute(query)
+    response = []
+    for (order_id,quantity,total_price,product_name) in cursor:
+        response.append(
+            {
+                'order_id':order_id,
+                'product_name':product_name,
+                'quantity':quantity,
+                'total_price':total_price,
             }
         )
     return response
