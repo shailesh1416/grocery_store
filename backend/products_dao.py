@@ -5,16 +5,18 @@ from sql_connection import get_sql_connection
 def get_all_products(connection):
 
     cursor = connection.cursor()
-    query = "SELECT p.product_id,p.name,p.rate, u.uom_name FROM grocery_store.products as p inner join grocery_store.uom as u on p.uom_id = u.uom_id;"
+    query = "SELECT p.product_id,p.name,p.rate, u.uom_name,p.purchase,p.sale FROM grocery_store.products as p inner join grocery_store.uom as u on p.uom_id = u.uom_id;"
     cursor.execute(query)
     response = []
-    for (pid,name,rate,unit) in cursor:
+    for (pid,name,rate,unit,purchase,sale) in cursor:
         response.append(
             {
                 'product_id':pid,
                 'name' : name,
                 'rate':rate,
                 'uom_name':unit,
+                'purchase':purchase,
+                'sale':sale
             }
         )
     return response
@@ -35,7 +37,7 @@ def get_product(connection,product_id):
 
 # Function to insert a products
 def edit_product(connection, product):
-    print(product)
+
     cursor = connection.cursor()
     query = ("UPDATE products SET name = %s, uom_id =%s,rate = %s where product_id=%s")
     data = (product['product_name'],product['uom_id'],product['rate'],product['id'])
@@ -55,7 +57,19 @@ def insert_new_product(connection, product):
     connection.commit()
     return cursor.lastrowid
 
+# add more product
+def add_more_product(connection,productData):
+    cursor = connection.cursor()
+    query = ("select purchase from products where product_id="+str(productData['product_id']))
+    cursor.execute(query)
 
+    prevQuantity = cursor.fetchone()[0]
+    print(prevQuantity)
+    query = ("UPDATE products SET purchase = %s where product_id=%s")
+    data = (str(int(productData['quantity'])+prevQuantity),productData['product_id'])
+    cursor.execute(query,data)
+    connection.commit()
+    return cursor.lastrowid
 
 # Delete a product
 def delete_product(connection,product_id):

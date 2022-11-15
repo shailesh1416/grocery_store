@@ -9,13 +9,27 @@ $(function () {
             var totalCost = 0;
             $.each(response, function(index, order) {
                 totalCost += parseFloat(order.total);
+                cancleBtn = ''
+                switch (order.status) {
+                    case 2:
+                        orderStatus = '<span class="badge badge-danger p-2" style="width:100px">Canceled</span>'
+                        break;
+                    case 1:
+                        orderStatus =  '<span class="badge badge-success p-2" style="width:100px">Done</span>'
+                        break
+                    default:
+                        orderStatus =  '<span class="badge badge-primary p-2" style="width:100px">Pending</span>'
+                        cancleBtn = '<span class="btn btn-sm btn-danger mx-2 order-cancle">Cancle</span>'
+                        break;
+                }
                 table += '<tr data-id="'+ order.order_id+'">' +
                     '<td>'+ order.datetime +'</td>'+
                     '<td>'+ order.order_id +'</td>'+
                     '<td>'+ order.customer_name +'</td>'+
                     '<td>'+ order.total.toFixed(2) +' Rs</td>'+
-                    '<td><span class="btn btn-xs btn-warning mx-2 order-details" data-toggle="modal" data-target="#orderDetailsModal">Details</span>'+
-                    '<span class="btn btn-xs btn-danger mx-2 order-cancle">Cancle</span></td></tr>';
+                    '<td><span class="btn btn-sm btn-warning mx-2 order-details" data-toggle="modal" data-target="#orderDetailsModal">Details</span>'+
+                    cancleBtn+'</td>'+
+                    '<td class="d-flex justify-content-center">'+orderStatus+'</td></tr>';
             });
             table += '<tr><td colspan="3" style="text-align: end"><b>Total</b></td><td><b>'+ totalCost.toFixed(2) +' Rs</b></td></tr>';
             $("table").find('tbody').empty().html(table);
@@ -50,6 +64,9 @@ detailModal.on('show.bs.modal', function(){
                 });
 
                 $("#order_detail_table").empty().html(options);
+               
+
+                
         }
     });
 });
@@ -66,4 +83,8 @@ $(document).on("click", ".order-cancle", function (){
     if (isCancle) {
         callApi("POST", orderCancleApiUrl, data);
     }
+});
+
+$(document).on("click", "#order-done", function (){
+    callApi("POST", orderDoneApiUrl, orderId);
 });

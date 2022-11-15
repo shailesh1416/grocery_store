@@ -3,7 +3,7 @@ var productListApiUrl = 'http://127.0.0.1:5000/getProducts';
 var uomListApiUrl = 'http://127.0.0.1:5000/getUOM';
 var productSaveApiUrl = 'http://127.0.0.1:5000/insertProduct';
 var productEditApiUrl = 'http://127.0.0.1:5000/editProduct';
-
+var addMoreProductApiUrl = 'http://127.0.0.1:5000/addMoreProduct';
 // new endpoint
 var productGetApiUrl = 'http://127.0.0.1:5000/getProduct';
 var productDeleteApiUrl = 'http://127.0.0.1:5000/deleteProduct';
@@ -11,6 +11,8 @@ var orderListApiUrl = 'http://127.0.0.1:5000/getAllOrders';
 var orderSaveApiUrl = 'http://127.0.0.1:5000/insertOrder';
 var orderDetailApiUrl = 'http://127.0.0.1:5000/orderDetails';
 var orderCancleApiUrl = 'http://127.0.0.1:5000/orderCancle';
+var orderDoneApiUrl = 'http://127.0.0.1:5000/orderDone';
+
 
 // For product drop in order
 var productsApiUrl = 'https://fakestoreapi.com/products';

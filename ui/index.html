@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,600,700">
         <link media="all" type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-        <link media="all" type="text/css" rel="stylesheet" href="css/style.css?v=1.0">
-        <link media="all" type="text/css" rel="stylesheet" href="css/sidebar-menu.css?v=1.0">
-        <link media="all" type="text/css" rel="stylesheet" href="css/custom.css?v=1.3.3">
+        <link media="all" type="text/css" rel="stylesheet" href="css/style.css">
+        <link media="all" type="text/css" rel="stylesheet" href="css/sidebar-menu.css">
+        <link media="all" type="text/css" rel="stylesheet" href="css/custom.css">
     </head>
     <body class="tooltips">
         <div class="container">
@@ -24,14 +24,14 @@
                 <div class="navbar navbar-default" role="navigation">
                     <div class="container">
 
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav visible-lg visible-md limit-chars">
-                                <ul class="breadcrumb">
+                        <div class="navbar">
+                            <ul class="nav navbar-nav">
+                                <ul class="float-left">
                                     <a href="index.html">
-                                        <i class="zmdi zmdi-view-dashboard zmdi-hc-fw" title="Orders"></i>
+                                        <img src="./images/dashboard.png" alt="" srcset="">
                                     </a>
                                     <a href="manage-product.html">
-                                        <i class="zmdi zmdi-assignment zmdi-hc-fw" title="Products"></i>
+                                        <img src="./images/product-list.png" alt="" srcset="">
                                     </a>
                                 </ul>
                             </ul>
@@ -45,13 +45,13 @@
                     <form class="form-horizontal" action="">
                         <div class="box-info full" id="taskFormContainer">
                             <h2>Grocery Store Management System</h2>
-                            <div class="panel-body pt-0">
-                                <div class="row mb-4">
+                            <div class="panel-body pt-0 p-2">
+                                <div class="row mb-2">
                                     <div class="col-sm-12">
-                                        <a href="order.html" class="btn btn-sm btn-primary pull-right ml-3">
+                                        <a href="order.html" class="btn btn-sm btn-primary pull-right ml-3 float-right">
                                             New Order
                                         </a>
-                                        <a href="manage-product.html" class="btn btn-sm btn-primary pull-right">
+                                        <a href="manage-product.html" class="btn btn-sm btn-primary pull-right float-right">
                                             Manage Products
                                         </a>
                                     </div>
@@ -63,6 +63,7 @@
                                         <th>Customer Name</th>
                                         <th>Total Cost</th>
                                         <th>Details</th>
+                                        <th>Status</th>
                                     </thead>
                                     <tbody>
 
@@ -83,7 +84,7 @@
                     </div>
                     <div class="modal-body">
                         <table class="table">
-                            <thead class="bg-dark">
+                            <thead>
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Tota</th>
@@ -94,6 +95,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="order-done">Done</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

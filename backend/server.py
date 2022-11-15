@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify,json
-from  products_dao import get_all_products,delete_product,insert_new_product,get_product,edit_product
-from  orders_dao import get_all_orders,insert_order,get_order_details
+from  products_dao import get_all_products,delete_product,insert_new_product,get_product,edit_product,add_more_product
+from  orders_dao import get_all_orders,insert_order,get_order_details,cancle_order,order_done
 from  uom_dao import get_uoms
 
 from sql_connection import get_sql_connection
@@ -34,6 +34,41 @@ def getOrderDetails():
     order_id = request.args.get("order_id")
     connection  = get_sql_connection()
     orders = get_order_details(connection,order_id)
+    response = jsonify(orders)
+    response.headers.add('Access-Control-Allow-Origin','*')
+    connection.close()
+    return response
+
+# route to cancle order
+@app.route("/orderCancle", methods=['POST'])
+def orderCancle():
+    # order_id = request.args.get("order_id")
+    connection  = get_sql_connection()
+    orders = cancle_order(connection,request.form['order_id'])
+    response = jsonify(orders)
+    response.headers.add('Access-Control-Allow-Origin','*')
+    connection.close()
+    return response
+
+
+# route to cancle order
+@app.route("/orderDone", methods=['POST'])
+def orderDone():
+    # order_id = request.args.get("order_id")
+    connection  = get_sql_connection()
+    orders = order_done(connection,request.form['order_id'])
+    response = jsonify(orders)
+    response.headers.add('Access-Control-Allow-Origin','*')
+    connection.close()
+    return response
+
+# route to add more product
+@app.route("/addMoreProduct", methods=['POST'])
+def addMoreProduct():
+    # order_id = request.args.get("order_id")
+    connection  = get_sql_connection()
+    product_payload = json.loads(request.form['data'])
+    orders = add_more_product(connection,product_payload)
     response = jsonify(orders)
     response.headers.add('Access-Control-Allow-Origin','*')
     connection.close()

@@ -1,5 +1,7 @@
 var productModal = $("#productModal");
 var productEditModal = $("#editModal");
+var addMoreProductModal = $("#addMoreProductModal");
+
 
     $(function () {
 
@@ -9,11 +11,13 @@ var productEditModal = $("#editModal");
                 var table = '';
                 $.each(response, function(index, product) {
                     table += '<tr data-id="'+ product.product_id +'" data-name="'+ product.name +'" data-unit="'+ product.uom_id +'" data-price="'+ product.price_per_unit +'">' +
-                        '<td>'+ product.name +'</td>'+
+                        '<td><strong>'+ product.name.toUpperCase() +'</strong></td>'+
+                        '<td><strong>'+(product.purchase-product.sale)+'</strong></td>'+
                         '<td>'+ product.uom_name +'</td>'+
                         '<td>'+ product.rate +'</td>'+
-                        '<td><span class="btn btn-xs btn-danger delete-product">Delete</span>'+
-                        '<span class="btn btn-xs btn-warning mx-2 edit-product" data-toggle="modal" data-target="#editModal">Edit</span></td></tr>';
+                        '<td><span class="btn btn-sm  btn-danger delete-product">Delete</span>'+
+                        '<span class="btn btn-sm btn-warning mx-2 edit-product" data-toggle="modal" data-target="#editModal">Edit</span>'+
+                        '<span class="btn btn-sm btn-info mx-2 add-more-product" data-toggle="modal" data-target="#addMoreProductModal">Add More</span></td></tr>';
                 });
                 $("table").find('tbody').empty().html(table);
             }
@@ -126,6 +130,26 @@ var productEditModal = $("#editModal");
         uom_data=data
     });
 
+    var add_more_product 
+    $(document).on("click", ".add-more-product", function (){
+        var tr = $(this).closest('tr');
+        add_more_product = tr.data('id')
+    });
+
+    $(document).on("click", "#addMoreProductBtn", function(){
+        //JSON data by API call
+        var data = $("#addMoreProductForm").serializeArray();
+        var requestPayload = {
+            product_id : add_more_product,
+            quantity : $('#addMoreProductQty').val()
+        };
+        console.log(data)
+
+        callApi("POST", addMoreProductApiUrl, {
+            'data' : JSON.stringify(requestPayload)
+        });
+    })
+
     productEditModal.on('show.bs.modal', function(){
         //JSON data by API call
         $.get(productGetApiUrl,uom_data,function (response) {  
@@ -149,3 +173,5 @@ var productEditModal = $("#editModal");
             }
         });
     });
+
+    

@@ -8,10 +8,11 @@ $(function () {
             var options = '<option value="">--Select--</option>';
             $.each(response, function(index, product) {
                 options += '<option value="'+ product.product_id +'">'+ product.name +'</option>';
-                productPrices[product.product_id] = product.price_per_unit;
+                productPrices[product.product_id] = product.rate;
             });
             $(".product-box").find("select").empty().html(options);
         }
+        console.log(productPrices)
     });
 });
 

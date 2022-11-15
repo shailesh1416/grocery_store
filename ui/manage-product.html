@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,600,700">
     <link media="all" type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link media="all" type="text/css" rel="stylesheet" href="css/style.css?v=1.0">
-    <link media="all" type="text/css" rel="stylesheet" href="css/sidebar-menu.css?v=1.0">
-    <link media="all" type="text/css" rel="stylesheet" href="css/custom.css?v=1.3.3">
+    <!-- <link media="all" type="text/css" rel="stylesheet" href="css/sidebar-menu.css?v=1.0"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link media="all" type="text/css" rel="stylesheet" href="css/custom.css">
 </head>
 <body class="tooltips">
 <div class="container">
@@ -24,14 +25,14 @@
         <div class="navbar navbar-default" role="navigation">
             <div class="container">
 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav visible-lg visible-md limit-chars">
-                        <ul class="breadcrumb">
+                <div class="navbar">
+                    <ul class="nav navbar-nav">
+                        <ul class="float-left">
                             <a href="index.html">
-                                <i class="zmdi zmdi-view-dashboard zmdi-hc-fw" title="Orders"></i>
+                                <img src="./images/dashboard.png" alt="" srcset="">
                             </a>
                             <a href="manage-product.html">
-                                <i class="zmdi zmdi-assignment zmdi-hc-fw" title="Products"></i>
+                                <img src="./images/product-list.png" alt="" srcset="">
                             </a>
                         </ul>
                     </ul>
@@ -44,20 +45,22 @@
         <div class="body content rows scroll-y">
             <div class="box-info full" id="taskFormContainer">
                 <h2>Manage Products</h2>
-                <div class="panel-body pt-0">
+                <div class="panel-body p-3">
                     <div class="row mb-4">
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#productModal">
+                            <button type="button" class="btn btn-sm btn-primary pull-right float-right" data-toggle="modal" data-target="#productModal">
                                 Add New Product
                             </button>
                         </div>
                     </div>
-                    <table class="table table-bordered">
+                    <!-- Search Product : <input class="float-right mx-2 form-control" type="text" name="" id="myInput"> -->
+                    <table class="table table-bordered" id="product-list">
                         <thead>
                         <th>Name</th>
+                        <th>Instock</th>
                         <th>Unit</th>
                         <th>Price Per Unit</th>
-                        <th style="width: 150px">Action</th>
+                        <th>Action</th>
                         </thead>
                         <tbody>
 
@@ -149,10 +152,38 @@
             </div>
         </div>
     </div>
+    <div class="modal fade-scale" id="addMoreProductModal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add more <span id="more-product-name"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addMoreProductForm">
+                        <div class="row">
+                           
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label >Increase Quantity By</label>
+                                    <input class="form-control" placeholder="Quantity" name="price" id="addMoreProductQty" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addMoreProductBtn">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script src="js/packages/jquery.min.js"></script>
 <script src="js/custom/common.js"></script>
 <script src="js/custom/manage-product.js"></script>
 <script src="js/packages/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
